@@ -42,63 +42,102 @@ const TimelineSection = () => {
   ];
 
   return (
-    <section className="py-16 md:py-20 px-4 md:px-6 lg:px-8 section-bg-light dark:bg-gray-800">
+    <section className="py-16 md:py-20 px-4 md:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
+      {/* Decorative illustration */}
+      <div className="absolute right-8 bottom-8 w-32 h-32 opacity-20">
+        <div className="w-full h-full bg-lexend-primary rounded-full relative">
+          <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-white rounded-full"></div>
+          <div className="absolute top-12 left-1/2 transform -translate-x-1/2 w-16 h-2 bg-gray-800 rounded"></div>
+          <div className="absolute bottom-8 left-2 w-6 h-8 bg-gray-800 rounded"></div>
+          <div className="absolute bottom-8 right-2 w-6 h-8 bg-gray-800 rounded"></div>
+          <div className="absolute -top-4 -right-2 text-2xl">👑</div>
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
             How we <span className="gradient-text">got here</span>
           </h2>
         </div>
 
-        <div className="relative">
-          {/* Timeline Line - Hidden on mobile, visible on large screens */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full timeline-line hidden lg:block"></div>
-
-          <div className="space-y-12 lg:space-y-16">
+        {/* Desktop Timeline */}
+        <div className="hidden lg:block relative">
+          <div className="flex justify-between items-center mb-8">
             {timelineEvents.map((event, index) => (
-              <div 
-                key={index}
-                className={`flex flex-col lg:flex-row items-center gap-8 ${
-                  index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                } animate-fade-in`}
-                style={{ animationDelay: `${index * 0.3}s` }}
-              >
-                {/* Content */}
-                <div className="lg:w-5/12 w-full">
-                  <div className="text-center lg:text-left">
-                    <div className="inline-flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 bg-lexend-primary text-white rounded-full flex items-center justify-center font-bold text-lg">
-                        {event.year === "Today" ? "∞" : event.year.slice(-2)}
-                      </div>
-                      <div>
-                        <h3 className="text-2xl lg:text-3xl font-bold gradient-text">{event.year}</h3>
-                      </div>
-                    </div>
-                    <p className="text-lexend-gray-700 dark:text-gray-300 leading-relaxed text-lg">
-                      {event.title}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Timeline Dot - Only visible on large screens */}
-                <div className="lg:w-2/12 hidden lg:flex justify-center">
-                  <div className="w-6 h-6 bg-lexend-primary rounded-full border-4 border-white dark:border-gray-800 shadow-lg z-10"></div>
-                </div>
-
-                {/* Image */}
-                <div className="lg:w-5/12 w-full">
-                  <div className="relative overflow-hidden rounded-2xl lg:rounded-3xl shadow-lg max-w-md mx-auto">
-                    <img 
-                      src={event.image} 
-                      alt={`Timeline ${event.year}`}
-                      className="w-full h-48 lg:h-64 object-cover transition-transform duration-300 hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                  </div>
-                </div>
+              <div key={index} className="flex flex-col items-center relative">
+                {/* Timeline dot */}
+                <div className="w-4 h-4 bg-gray-900 dark:bg-white rounded-full mb-4 relative z-10"></div>
+                
+                {/* Timeline line */}
+                {index < timelineEvents.length - 1 && (
+                  <div className="absolute top-2 left-4 w-full h-0.5 bg-gray-300 dark:bg-gray-600 z-0"></div>
+                )}
               </div>
             ))}
           </div>
+
+          {/* Timeline content */}
+          <div className="grid grid-cols-6 gap-8">
+            {timelineEvents.map((event, index) => (
+              <div 
+                key={index}
+                className="text-center animate-fade-in"
+                style={{ animationDelay: `${index * 0.2}s` }}
+              >
+                {/* Image */}
+                <div className="mb-6">
+                  <div className="relative overflow-hidden rounded-2xl mx-auto w-32 h-24 lg:w-40 lg:h-28">
+                    <img 
+                      src={event.image} 
+                      alt={`Timeline ${event.year}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+
+                {/* Year */}
+                <div className="text-2xl lg:text-3xl font-bold gradient-text mb-2">
+                  {event.year}
+                </div>
+
+                {/* Title */}
+                <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                  {event.title}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Mobile Timeline */}
+        <div className="lg:hidden space-y-8">
+          {timelineEvents.map((event, index) => (
+            <div 
+              key={index}
+              className="flex gap-6 animate-fade-in"
+              style={{ animationDelay: `${index * 0.2}s` }}
+            >
+              {/* Image */}
+              <div className="flex-shrink-0">
+                <div className="relative overflow-hidden rounded-xl w-20 h-16">
+                  <img 
+                    src={event.image} 
+                    alt={`Timeline ${event.year}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="flex-1">
+                <div className="text-xl font-bold gradient-text mb-1">{event.year}</div>
+                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                  {event.title}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
