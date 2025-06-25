@@ -50,7 +50,7 @@ const FloatingButtons = () => {
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="w-12 h-12 bg-lexend-blue hover:bg-primary-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center animate-fade-in"
+          className="w-12 h-12 bg-lexend-primary hover:bg-lexend-secondary text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center animate-fade-in"
           aria-label="Scroll to top"
         >
           <ArrowUp size={20} />

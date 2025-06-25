@@ -26,12 +26,12 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				primary: {
-					DEFAULT: '#6366f1',
-					50: '#f0f0ff',
-					100: '#e5e5ff',
-					500: '#6366f1',
-					600: '#4f46e5',
-					700: '#4338ca',
+					DEFAULT: '#22c55e',
+					50: '#f0fdf4',
+					100: '#dcfce7',
+					500: '#22c55e',
+					600: '#16a34a',
+					700: '#15803d',
 					foreground: '#ffffff'
 				},
 				secondary: {
@@ -69,9 +69,10 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				lexend: {
-					blue: '#6366f1',
-					lightBlue: '#f0f0ff',
-					purple: '#8b5cf6',
+					primary: '#22c55e',
+					secondary: '#16a34a',
+					accent: '#059669',
+					light: '#dcfce7',
 					gray: {
 						50: '#f9fafb',
 						100: '#f3f4f6',
@@ -135,16 +136,6 @@ export default {
 					'50%': {
 						transform: 'translateY(-10px)'
 					}
-				},
-				'bounce-slow': {
-					'0%, 100%': {
-						transform: 'translateY(-5%)',
-						animationTimingFunction: 'cubic-bezier(0.8, 0, 1, 1)'
-					},
-					'50%': {
-						transform: 'translateY(0)',
-						animationTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)'
-					}
 				}
 			},
 			animation: {
@@ -152,8 +143,7 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.6s ease-out',
 				'slide-in': 'slide-in 0.8s ease-out',
-				'float': 'float 3s ease-in-out infinite',
-				'bounce-slow': 'bounce-slow 2s infinite'
+				'float': 'float 3s ease-in-out infinite'
 			}
 		}
 	},
